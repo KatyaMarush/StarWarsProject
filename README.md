@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with SWAPI APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was developed as a home assignment for React developer role.
 
 ## Available Scripts
 
