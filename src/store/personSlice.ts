@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { getPeople, getPersonDetails, getFilteredData } from "../api/swapi";
 import { RootState } from "./index";
-import { PersonState } from "../types";
+import { PersonState, Person } from "../types";
 
 const initialState: PersonState = {
 	data: [],
@@ -39,7 +39,7 @@ export const editPerson = createSlice({
 	name: "person",
 	initialState,
 	reducers: {
-		editPersonLocally: (state, action) => {
+		editPersonLocally: (state, action: PayloadAction<Person[]>) => {
 			state.data = action.payload;
 		},
 	},

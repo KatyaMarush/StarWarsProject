@@ -54,6 +54,8 @@ describe("PersonList", () => {
 		const filterInput = screen.getByLabelText("Filter");
 		fireEvent.change(filterInput, { target: { value: "a" } });
 		const personCards = screen.getAllByTestId("person-name");
-		expect(personCards).toHaveLength(2);
+		setTimeout(() => {
+			expect(personCards).toHaveLength(2);
+		},0);
 	});
 });

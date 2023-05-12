@@ -2,9 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Grid } from "@mui/material";
 import { Pagination } from "@mui/material";
 import PersonCard from "../PersonCard/PersonCard";
-import { RootState, AppDispatch } from "../../store";
 import { Person } from "../../types";
-import { useSelector, useDispatch } from "react-redux";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import { getPeopleStart, getFilteredPersonStart, editPersonLocally } from "../../store/personSlice";
 import Filter from "../Filter/Filter";
 import { debounce } from "lodash";
@@ -13,10 +12,10 @@ const PersonList: React.FC = () => {
 	const [page, setPage] = useState(1);
 	const [filter, setFilter] = useState("");
 
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
-	const { loading, data, error, count } = useSelector(
-		(state: RootState) => state.person
+	const { loading, data, error, count } = useAppSelector(
+		(state) => state.person
 	);
 
 	useEffect(()    => {
@@ -40,10 +39,6 @@ const PersonList: React.FC = () => {
 		if (value.length) handleFilterChange(value);
 	};
 
-	const filteredData = data.filter((person: Person) =>
-		person.name.toLowerCase().includes(filter.toLowerCase())
-	);
-
 	const editPersonCard = (updatedPerson: Person) => {
 		const newData = data.map((person: Person) =>
 			person.url === updatedPerson.url ? updatedPerson : person
@@ -63,7 +58,7 @@ const PersonList: React.FC = () => {
 		<div>
 			<Filter value={filter} onChange={handleFilterInputChange} />
 			<Grid container spacing={2}>
-				{filteredData.map((person: Person) => (
+				{data.map((person: Person) => (
 					<Grid item xs={12} sm={6} md={4} key={person.name}>
 						<PersonCard person={person} onEdit={editPersonCard}  />
 					</Grid>

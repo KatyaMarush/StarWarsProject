@@ -26,7 +26,7 @@ export interface PeopleResponse {
 
 export type PersonDetailsResponse = Person
 
-export interface PersonState {
+export type PersonState = {
     data: Person[];
     personDetails: PersonDetailsResponse | null;
     loading: boolean;

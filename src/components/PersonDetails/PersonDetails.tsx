@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getPersonDetailsStart } from "../../store/personSlice";
 import { PersonDetailsResponse } from "../../types";
 import { Box, Typography } from "@mui/material";
@@ -10,10 +9,10 @@ import { Link } from "react-router-dom";
 
 const PersonDetails: React.FC = () => {
 	const { id } = useParams<{ id: string }>();
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
-	const { loading, personDetails, error } = useSelector(
-		(state: RootState) => state.person
+	const { loading, personDetails, error } = useAppSelector(
+		(state) => state.person
 	);
 
 	useEffect(() => {
