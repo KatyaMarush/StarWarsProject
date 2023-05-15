@@ -7,10 +7,11 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import { getPeopleStart, getFilteredPersonStart, editPersonLocally } from "../../store/personSlice";
 import Filter from "../Filter/Filter";
 import { debounce } from "lodash";
+import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 
-const PersonList: React.FC = () => {
-	const [page, setPage] = useState(1);
-	const [filter, setFilter] = useState("");
+const PersonList: React.FC = (): ReactJSXElement => {
+	const [page, setPage] = useState<number>(1);
+	const [filter, setFilter] = useState<string>("");
 
 	const dispatch = useAppDispatch();
 
@@ -23,7 +24,7 @@ const PersonList: React.FC = () => {
 	}, [dispatch, page]);
 
 
-	const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
+	const handleChangePage = (event: React.ChangeEvent<unknown>, value: number): void => {
 		setPage(value);
 	};
 
@@ -34,12 +35,12 @@ const PersonList: React.FC = () => {
 		[dispatch]
 	);
 
-	const handleFilterInputChange = (value: string) => {
+	const handleFilterInputChange = (value: string): void => {
 		setFilter(value);
 		if (value.length) handleFilterChange(value);
 	};
 
-	const editPersonCard = (updatedPerson: Person) => {
+	const editPersonCard = (updatedPerson: Person): void => {
 		const newData = data.map((person: Person) =>
 			person.url === updatedPerson.url ? updatedPerson : person
 		);

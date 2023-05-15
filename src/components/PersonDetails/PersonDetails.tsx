@@ -6,8 +6,9 @@ import { PersonDetailsResponse } from "../../types";
 import { Box, Typography } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 
-const PersonDetails: React.FC = () => {
+const PersonDetails: React.FC = (): ReactJSXElement => {
 	const { id } = useParams<{ id: string }>();
 	const dispatch = useAppDispatch();
 
@@ -29,7 +30,7 @@ const PersonDetails: React.FC = () => {
 		return <div>Error: {error}</div>;
 	}
 
-	const renderDetails = (person: PersonDetailsResponse) => {
+	const renderDetails = (person: PersonDetailsResponse): ReactJSXElement => {
 		return (
 			<Box>
 				<Box mb={2}>

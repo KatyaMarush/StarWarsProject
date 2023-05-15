@@ -1,31 +1,32 @@
 import React, { useState } from "react";
 import { Person } from "../../types";
 import { Link } from "react-router-dom";
+import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 
 interface Props {
   person: Person;
   onEdit: (updatedPerson: Person) => void;
 }
 
-const PersonCard: React.FC<Props> = ({ person, onEdit }) => {
+const PersonCard: React.FC<Props> = ({ person, onEdit }): ReactJSXElement => {
 
-	const id = person.url.match(/(\d+)/)?.[0];
+	const id: string = person.url.match(/(\d+)/)?.[0] ?? "";
 
-	const [isEditing, setIsEditing] = useState(false);
+	const [isEditing, setIsEditing] = useState<boolean>(false);
 	const [editedPerson, setEditedPerson] = useState<Person>({ ...person });
 
-	const toggleEditMode = () => {
+	const toggleEditMode = (): void => {
 		setIsEditing(!isEditing);
 	};
 
-	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		setEditedPerson({
 			...editedPerson,
 			[event.target.name]: event.target.value,
 		});
 	};
 
-	const handleSave = () => {
+	const handleSave = (): void => {
 		onEdit(editedPerson);
 		setIsEditing(false);
 	};

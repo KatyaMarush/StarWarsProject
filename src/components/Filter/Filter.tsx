@@ -1,13 +1,14 @@
 import React from "react";
 import { Box, TextField } from "@mui/material";
+import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 
 interface Props {
     value: string;
     onChange: (value: string) => void;
 }
 
-const Filter: React.FC<Props> = ({ value, onChange }) => {
-	const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+const Filter: React.FC<Props> = ({ value, onChange }): ReactJSXElement => {
+	const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		onChange(event.target.value);
 	};
 
